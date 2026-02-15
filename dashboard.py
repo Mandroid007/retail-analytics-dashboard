@@ -98,10 +98,10 @@ insight_options = st.sidebar.multiselect(
 # Product selection for dynamic product insight
 # ----------------------
 if "Product Insight" in insight_options:
-    selected_product = st.sidebar.selectbox(
-        "Select Product for Detailed Insight",
-        options=filtered_data["Product_Name"].sort_values()
-    )
+   selected_product = st.sidebar.selectbox(
+    "Select Product for Detailed Insight",
+    options=sorted(filtered_data["Product_Name"].unique())
+)
 
 # ----------------------
 # Display Executive Insights
