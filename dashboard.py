@@ -85,15 +85,11 @@ col3.metric("Average Profit Margin", f"{avg_margin:.2f}%")
 insight_options = st.sidebar.multiselect(
     "Select Insights to Display",
     options=[
-        "Top Product Contribution",
-        "Best Customer Type by Profit",
-        "Profit Margin Summary",
+        
         "Product Insight"
     ],
     default=[
-        "Top Product Contribution",
-        "Best Customer Type by Profit",
-        "Profit Margin Summary",
+        
         "Product Insight"
     ]
 )
@@ -112,39 +108,6 @@ if "Product Insight" in insight_options:
 # ----------------------
 st.subheader("📊 Executive Insights")
 
-# Top Product Contribution
-if "Top Product Contribution" in insight_options:
-    top_product = (
-        filtered_data.groupby("Product_Name")["Revenue"]
-        .sum()
-        .sort_values(ascending=False)
-    )
-    if not top_product.empty:
-        top_product_name = top_product.index[0]
-        top_product_value = top_product.iloc[0]
-        total_revenue_all = filtered_data["Revenue"].sum()
-        contribution_pct = (top_product_value / total_revenue_all) * 100
-        st.info(f"🔹 {top_product_name} generates {contribution_pct:.1f}% of total revenue.")
-
-# Best Customer Type by Profit
-if "Best Customer Type by Profit" in insight_options:
-    customer_profit = (
-        filtered_data.groupby("Customer_Type")["Profit"]
-        .sum()
-        .sort_values(ascending=False)
-    )
-    if not customer_profit.empty:
-        best_customer = customer_profit.index[0]
-        st.info(f"🔹 {best_customer} customers generate the highest total profit.")
-
-# Profit Margin Summary
-if "Profit Margin Summary" in insight_options:
-    if avg_margin > 30:
-        st.success("🟢 Profit margins are strong.")
-    elif avg_margin > 15:
-        st.warning("🟡 Profit margins are moderate.")
-    else:
-        st.error("🔴 Profit margins are low — consider price/cost review.")
 
 # Dynamic Product Insight
 if "Product Insight" in insight_options:
