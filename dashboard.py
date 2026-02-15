@@ -123,7 +123,7 @@ if "Product Insight" in insight_options:
         st.write(f"- Average Profit Margin: {product_margin:.2f}%")
 
 # Profit Margin Summary
-if "Profit Margin Summary" in insight_options:
+if "Profit_Margin" in insight_options:
     if avg_margin > 30:
         st.success("🟢 Profit margins are strong.")
     elif avg_margin > 15:
