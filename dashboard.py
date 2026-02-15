@@ -62,6 +62,24 @@ filtered_data = data[
     (data["Product_Name"].isin(products_selected)) &
     (data["Customer_Type"].isin(customers_selected))
 ]
+# ----------------------
+# Profit Margin Summary with Conditional Formatting
+# ----------------------
+if "Profit Margin Summary" in insight_options:
+    # Ensure filtered_data is not empty
+    if not filtered_data.empty:
+        avg_margin = filtered_data["Profit_Margin"].mean()
+
+        st.subheader("💰 Profit Margin Summary")
+
+        if avg_margin >= 30:
+            st.success(f"🟢 Profit margins are strong: {avg_margin:.2f}%")
+        elif avg_margin >= 15:
+            st.warning(f"🟡 Profit margins are moderate: {avg_margin:.2f}%")
+        else:
+            st.error(f"🔴 Profit margins are low: {avg_margin:.2f}% — consider reviewing pricing or costs")
+    else:
+        st.info("⚠️ No data available for the selected filters.")
 
 # ----------------------
 # Key Metrics
@@ -102,18 +120,6 @@ if "Product Insight" in insight_options:
     "Select Product for Detailed Insight",
     options=sorted(filtered_data["Product_Name"].unique())
 )
-# Profit Margin Summary with Conditional Formatting
-if "Profit Margin Summary" in insight_options:
-    avg_margin = filtered_data["Profit_Margin"].mean()
-    
-    st.subheader("💰 Profit Margin Summary")
-    
-    if avg_margin >= 30:
-        st.success(f"🟢 Profit margins are strong: {avg_margin:.2f}%")
-    elif avg_margin >= 15:
-        st.warning(f"🟡 Profit margins are moderate: {avg_margin:.2f}%")
-    else:
-        st.error(f"🔴 Profit margins are low: {avg_margin:.2f}% — consider reviewing pricing or costs")
 
 # ----------------------
 # Display Executive Insights
