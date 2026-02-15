@@ -5,9 +5,10 @@ import plotly.express as px
 st.title("Retail Analytics Test Dashboard")
 
 # Load CSVs
-products = pd.read_csv("/Users/macbook/Downloads/dash/Products.csv")
-customers = pd.read_csv("/Users/macbook/Downloads/dash/ Customers.csv")
-sales = pd.read_csv("/Users/macbook/Downloads/dash/Sales.csv")
+products = pd.read_csv("Products.csv")
+customers = pd.read_csv("Customers.csv")
+sales = pd.read_csv("Sales.csv")
+
 
 # ----------------------
 products.columns = products.columns.str.strip()
