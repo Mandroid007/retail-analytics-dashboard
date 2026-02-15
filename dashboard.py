@@ -78,6 +78,24 @@ col3.metric("Average Profit Margin", f"{avg_margin:.2f}%")
 
 # ----------------------
 
+# Product selection for dynamic product insight
+selected_product = st.sidebar.selectbox(
+    "Select Product for Detailed Insight",
+    options=filtered_data["Product_Name"].sort_values()
+)
+# Show dynamic product insight
+product_data = filtered_data[filtered_data["Product_Name"] == selected_product]
+
+if not product_data.empty:
+    product_revenue = product_data["Revenue"].sum()
+    product_profit = product_data["Profit"].sum()
+    product_margin = product_data["Profit_Margin"].mean()
+    
+    st.subheader(f"📦 Insights for {selected_product}")
+    st.write(f"- Total Revenue: ₦{product_revenue:,.2f}")
+    st.write(f"- Total Profit: ₦{product_profit:,.2f}")
+    st.write(f"- Average Profit Margin: {product_margin:.2f}%")
+
 # ----------------------
 # Executive Insights
 # ----------------------
