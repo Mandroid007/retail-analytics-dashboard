@@ -1,0 +1,9 @@
+Product_ID,Product_Name,Category,Cost_Price,Selling_Price,Supplier
+P001,Rice (50kg),Food,42000,47000,Supplier A
+P002,Beans (50kg),Food,38000,43000,Supplier B
+P003,Cooking Oil,Food,9500,11000,Supplier C
+P004,Soft Drink Crate,Beverages,3200,3800,Supplier A
+P005,Detergent,Household,2800,3500,Supplier D
+P006,Tissue Roll,Household,900,1300,Supplier D
+P007,Shampoo,Personal Care,2200,3000,Supplier E
+P008,Toothpaste,Personal Care,1200,1800,Supplier E
