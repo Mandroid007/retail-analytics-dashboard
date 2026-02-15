@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-st.title("Retail Analytics Test Dashboard")
 
 # Load CSVs
 products = pd.read_csv("Products.csv")
@@ -76,6 +75,52 @@ col1, col2, col3 = st.columns(3)
 col1.metric("Total Revenue", f"₦{total_revenue:,.2f}")
 col2.metric("Total Profit", f"₦{total_profit:,.2f}")
 col3.metric("Average Profit Margin", f"{avg_margin:.2f}%")
+
+
+# ----------------------
+# Executive Insights
+# ----------------------
+st.subheader("📊 Executive Insights")
+
+# Top Product Contribution %
+top_product = (
+    filtered_data.groupby("Product_Name")["Revenue"]
+    .sum()
+    .sort_values(ascending=False)
+)
+
+if not top_product.empty:
+    top_product_name = top_product.index[0]
+    top_product_value = top_product.iloc[0]
+    total_revenue_all = filtered_data["Revenue"].sum()
+    contribution_pct = (top_product_value / total_revenue_all) * 100
+
+    st.info(
+        f"🔹 {top_product_name} generates {contribution_pct:.1f}% of total revenue."
+    )
+
+# Best Customer Type by Profit
+customer_profit = (
+    filtered_data.groupby("Customer_Type")["Profit"]
+    .sum()
+    .sort_values(ascending=False)
+)
+
+if not customer_profit.empty:
+    best_customer = customer_profit.index[0]
+
+    st.info(
+        f"🔹 {best_customer} customers generate the highest total profit."
+    )
+
+# Average Profit Margin Insight
+if avg_margin > 30:
+    st.success("🟢 Profit margins are strong.")
+elif avg_margin > 15:
+    st.warning("🟡 Profit margins are moderate.")
+else:
+    st.error("🔴 Profit margins are low and may need pricing review.")
+
 
 # ----------------------
 # Revenue by Product
