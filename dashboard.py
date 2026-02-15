@@ -122,14 +122,18 @@ if "Product Insight" in insight_options:
         st.write(f"- Total Profit: ₦{product_profit:,.2f}")
         st.write(f"- Average Profit Margin: {product_margin:.2f}%")
 
-# Profit Margin Summary
-if "Profit_Margin" in insight_options:
-    if avg_margin > 30:
-        st.success("🟢 Profit margins are strong.")
-    elif avg_margin > 15:
-        st.warning("🟡 Profit margins are moderate.")
+# Profit Margin Summary with Conditional Formatting
+if "Profit Margin Summary" in insight_options:
+    avg_margin = filtered_data["Profit_Margin"].mean()
+    
+    st.subheader("💰 Profit Margin Summary")
+    
+    if avg_margin >= 30:
+        st.success(f"🟢 Profit margins are strong: {avg_margin:.2f}%")
+    elif avg_margin >= 15:
+        st.warning(f"🟡 Profit margins are moderate: {avg_margin:.2f}%")
     else:
-        st.error("🔴 Profit margins are low — consider price/cost review.")
+        st.error(f"🔴 Profit margins are low: {avg_margin:.2f}% — consider reviewing pricing or costs")
 
 
 
