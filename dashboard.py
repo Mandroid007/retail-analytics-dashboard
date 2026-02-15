@@ -137,7 +137,7 @@ revenue_chart = px.bar(
     text_auto=True,
     title="Revenue by Product",
     color="Revenue",
-    color_continuous_scale="Viridis"
+    color_continuous_scale="RdYlGn"
 )
 st.plotly_chart(revenue_chart, use_container_width=True)
 
